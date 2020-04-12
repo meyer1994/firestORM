@@ -9,9 +9,8 @@ class Model(Base):
 
 
 class TestBase(FirestoreTest):
-
     def test_collection(self):
-        """ Fetches the collection with the name of the class """
+        """ Gets the collection by calling `client.collection` """
         model = Model(id='id', value=0)
         result = model.collection()
 
