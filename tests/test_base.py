@@ -35,3 +35,17 @@ class TestBase(FirestoreTest):
         mock = mock().set
         mock.assert_called_with({'value': 0})
         self.assertIs(result, mock())
+
+    def test_delete(self):
+        """ Delets data by calling `document.delete` """
+        model = Model(id='id', value=0)
+        result = model.delete()
+
+        # firestore.Client().collection().document('id')
+        mock = self.mock().collection().document
+        mock.assert_called_with('id')
+
+        # document.set({'value': 0})
+        mock = mock().delete
+        mock.assert_called_with()
+        self.assertIs(result, mock())
